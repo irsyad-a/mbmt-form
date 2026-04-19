@@ -24,7 +24,7 @@
 
     <main class="app-container">
         <header class="top-sticky-header">
-            <img src="{{ asset('assets/Logo yang harus tetap di atas.png') }}" alt="Logo Institusi" class="sticky-logo-img">
+            <img src="{{ asset('assets/Logo baru ini pokoknya harus dipasang di atas.png') }}" alt="Logo Institusi" class="sticky-logo-img">
         </header>
 
         <div class="main-title-wrapper">
