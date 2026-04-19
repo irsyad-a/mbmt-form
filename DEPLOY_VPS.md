@@ -56,12 +56,18 @@ DASHBOARD_USERNAME=admin
 DASHBOARD_PASSWORD=PASSWORD_DASHBOARD_STRONG
 MAIL_MAILER=smtp
 MAIL_SCHEME=tls
-MAIL_HOST=smtp.example.com
+MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
-MAIL_USERNAME=SMTP_USERNAME
-MAIL_PASSWORD=SMTP_PASSWORD
-MAIL_FROM_ADDRESS=noreply@domain-anda.com
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-16-char-app-password
+MAIL_FROM_ADDRESS=your-email@gmail.com
 MAIL_FROM_NAME="MBMT LMB ITS"
+
+Catatan Gmail:
+
+- Aktifkan 2-Step Verification pada akun Google.
+- Buat App Password (16 karakter) dan pakai nilainya di MAIL_PASSWORD.
+- Jangan gunakan password login Gmail biasa di MAIL_PASSWORD.
 
 ## 6) Jalankan deploy otomatis
 
