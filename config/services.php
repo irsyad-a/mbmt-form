@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'mbmt' => [
+        'group_link' => env('MBMT_GROUP_LINK'),
+    ],
+
 ];

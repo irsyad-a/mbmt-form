@@ -284,21 +284,33 @@
                         <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 10px; max-width: 260px;">
                             Setelah itu Anda diperkenankan untuk masuk ke grup komunal berikut:
                         </p>
-
                         <!-- Tombol Gabung -->
-                        <a href="#" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 260px; height: 42px; border-radius: 45px; box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <a id="success-group-button" href="#" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 260px; height: 42px; border-radius: 45px; box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
                             Gabung Grup Komunal
                         </a>
 
                         <!-- Desc 3 -->
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 10px; max-width: 270px;">
-                            Jika Anda memiliki pertanyaan silahkan hubungi CP di bawah ini:
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 10px; max-width: 280px;">
+                            Jika Anda memiliki pertanyaan silahkan hubungi CP berikut (sesuai UKM Anda):
                         </p>
 
-                        <!-- Tombol CP -->
-                        <a href="https://wa.me/6281827362736253" target="_blank" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 185px; height: 26px; border-radius: 29px; box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 0px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                            CP: 1827362736253 (Icad)
+                        <p id="success-primary-text" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 8px; max-width: 280px;">
+                            CP Primer untuk UKM - : -
+                        </p>
+                        <a id="success-primary-button" href="#" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 250px; height: 30px; border-radius: 29px; box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 8px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            Hubungi CP Primer
                         </a>
+
+                        <p id="success-secondary-name" style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 8px; max-width: 280px;">
+                            CP Sekunder: Irsyad Akbar
+                        </p>
+                        <a id="success-secondary-button" href="https://wa.me/6282179119634" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 250px; height: 30px; border-radius: 29px; box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 0px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            Hubungi CP Sekunder: +6282179119634
+                        </a>
+
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.35; margin-top: 10px; margin-bottom: 0; max-width: 280px;">
+                            UKM terpilih: <span id="success-selected-ukm" style="font-weight: 700;">-</span>
+                        </p>
 
                     </div>
                 </div>
@@ -427,6 +439,83 @@
     let currentStep = 1;
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
     const registrationEndpoint = @json(route('registrations.store'));
+    const fallbackPrimaryContact = {
+        name: 'Irsyad Akbar',
+        whatsappUrl: 'https://wa.me/6282179119634',
+    };
+    const fallbackSecondaryContact = {
+        name: 'Irsyad Akbar',
+        whatsappUrl: 'https://wa.me/6282179119634',
+    };
+
+    function parseContactFromServer(contact, fallbackContact) {
+        if (!contact || typeof contact !== 'object') {
+            return fallbackContact;
+        }
+
+        const name = String(contact.name || '').trim();
+        const whatsappUrl = String(contact.whatsapp_url || contact.whatsappUrl || '').trim();
+
+        if (!name || !whatsappUrl) {
+            return fallbackContact;
+        }
+
+        return {
+            name,
+            whatsappUrl,
+        };
+    }
+
+    function formatWaDisplay(waUrl) {
+        const clean = String(waUrl || '').replace('https://wa.me/', '').trim();
+        return clean ? `+${clean}` : '-';
+    }
+
+    function updateSuccessContactPerson(responsePayload) {
+        const selectedUkm = String(responsePayload?.ukm || document.getElementById('val-ukm').value || '').trim();
+        const groupLink = String(responsePayload?.link_grup || '').trim();
+
+        const primaryContact = parseContactFromServer(responsePayload?.cp_primer, fallbackPrimaryContact);
+        const secondaryContact = parseContactFromServer(responsePayload?.cp_sekunder, fallbackSecondaryContact);
+
+        const selectedUkmEl = document.getElementById('success-selected-ukm');
+        const groupButtonEl = document.getElementById('success-group-button');
+        const primaryTextEl = document.getElementById('success-primary-text');
+        const primaryButtonEl = document.getElementById('success-primary-button');
+        const secondaryNameEl = document.getElementById('success-secondary-name');
+        const secondaryButtonEl = document.getElementById('success-secondary-button');
+
+        if (selectedUkmEl) {
+            selectedUkmEl.innerText = selectedUkm || '-';
+        }
+
+        if (groupButtonEl) {
+            if (groupLink) {
+                groupButtonEl.href = groupLink;
+                groupButtonEl.style.pointerEvents = 'auto';
+                groupButtonEl.style.opacity = '1';
+            } else {
+                groupButtonEl.href = '#';
+                groupButtonEl.style.pointerEvents = 'none';
+                groupButtonEl.style.opacity = '0.65';
+            }
+        }
+
+        if (primaryTextEl) {
+            primaryTextEl.innerText = `CP Primer untuk UKM ${selectedUkm || '-'}: ${primaryContact.name}`;
+        }
+        if (primaryButtonEl) {
+            primaryButtonEl.href = primaryContact.whatsappUrl;
+            primaryButtonEl.innerText = `Hubungi CP Primer: ${formatWaDisplay(primaryContact.whatsappUrl)}`;
+        }
+        if (secondaryNameEl) {
+            secondaryNameEl.innerText = `CP Sekunder: ${secondaryContact.name}`;
+        }
+        if (secondaryButtonEl) {
+            secondaryButtonEl.href = secondaryContact.whatsappUrl;
+            secondaryButtonEl.innerText = `Hubungi CP Sekunder: ${formatWaDisplay(secondaryContact.whatsappUrl)}`;
+        }
+    }
 
     // =====================================================
     // CUSTOM DROPDOWN ENGINE
@@ -871,6 +960,7 @@
                 return;
             }
 
+            updateSuccessContactPerson(responsePayload);
             document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
             document.getElementById('step-selesai').style.display = 'block';
             document.getElementById('step-badge-text').innerText = 'SELESAI';

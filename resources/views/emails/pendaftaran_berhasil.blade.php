@@ -127,14 +127,33 @@
                                 Jika Anda terkendala terkait pendaftaran atau acara, silahkan hubungi:
                             </p>
 
-                            <!-- CP UKM -->
+                            <!-- CP PRIMER (SESUAI UKM) -->
                             <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 30px;">
                                 <tr>
                                     <td align="left" style="background-color: #f8f9fa; border-left: 4px solid #1a7a1a; padding: 15px 20px;">
-                                        @if(isset($data['cp_ukm']) && $data['cp_ukm'])
-                                            <a href="{{ $data['cp_ukm'] }}" style="color: #1a7a1a; text-decoration: none; font-weight: 700; font-size: 15px;">Hubungi CP WhatsApp</a>
+                                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #1a1a1a; font-weight: 700;">
+                                            CP Primer (sesuai UKM): {{ $data['cp_primer_nama'] ?? '-' }}
+                                        </p>
+                                        @if(isset($data['cp_primer_wa']) && $data['cp_primer_wa'])
+                                            <a href="{{ $data['cp_primer_wa'] }}" style="color: #1a7a1a; text-decoration: none; font-weight: 700; font-size: 15px;">Hubungi CP Primer via WhatsApp</a>
                                         @else
-                                            <a href="#" style="color: #1a7a1a; text-decoration: none; font-weight: 700; font-size: 15px;">{CP sesuai UKM}</a>
+                                            <a href="#" style="color: #1a7a1a; text-decoration: none; font-weight: 700; font-size: 15px;">{CP primer sesuai UKM}</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- CP SEKUNDER -->
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 30px;">
+                                <tr>
+                                    <td align="left" style="background-color: #f8f9fa; border-left: 4px solid #243e88; padding: 15px 20px;">
+                                        <p style="margin: 0 0 8px 0; font-size: 14px; color: #1a1a1a; font-weight: 700;">
+                                            CP Sekunder: {{ $data['cp_sekunder_nama'] ?? '-' }}
+                                        </p>
+                                        @if(isset($data['cp_sekunder_wa']) && $data['cp_sekunder_wa'])
+                                            <a href="{{ $data['cp_sekunder_wa'] }}" style="color: #243e88; text-decoration: none; font-weight: 700; font-size: 15px;">Hubungi CP Sekunder via WhatsApp</a>
+                                        @else
+                                            <a href="#" style="color: #243e88; text-decoration: none; font-weight: 700; font-size: 15px;">{CP sekunder}</a>
                                         @endif
                                     </td>
                                 </tr>
