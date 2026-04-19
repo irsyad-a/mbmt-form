@@ -61,7 +61,10 @@ class RegistrationController extends Controller
         $primaryCp = ContactPersonResolver::primaryForUkm($registration->ukm);
         $secondaryCp = ContactPersonResolver::secondary();
 
-        $this->sendRegistrationEmails($registration, $primaryCp, $secondaryCp);
+        // Run email and commitment generation after response to improve submit UX latency.
+        app()->terminating(function () use ($registration, $primaryCp, $secondaryCp): void {
+            $this->sendRegistrationEmails($registration, $primaryCp, $secondaryCp);
+        });
 
         return response()->json([
             'message' => 'Registrasi berhasil disimpan.',

@@ -308,10 +308,6 @@
                             Hubungi CP Sekunder: +6282179119634
                         </a>
 
-                        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.35; margin-top: 10px; margin-bottom: 0; max-width: 280px;">
-                            UKM terpilih: <span id="success-selected-ukm" style="font-weight: 700;">-</span>
-                        </p>
-
                     </div>
                 </div>
 
@@ -478,16 +474,11 @@
         const primaryContact = parseContactFromServer(responsePayload?.cp_primer, fallbackPrimaryContact);
         const secondaryContact = parseContactFromServer(responsePayload?.cp_sekunder, fallbackSecondaryContact);
 
-        const selectedUkmEl = document.getElementById('success-selected-ukm');
         const groupButtonEl = document.getElementById('success-group-button');
         const primaryTextEl = document.getElementById('success-primary-text');
         const primaryButtonEl = document.getElementById('success-primary-button');
         const secondaryNameEl = document.getElementById('success-secondary-name');
         const secondaryButtonEl = document.getElementById('success-secondary-button');
-
-        if (selectedUkmEl) {
-            selectedUkmEl.innerText = selectedUkm || '-';
-        }
 
         if (groupButtonEl) {
             if (groupLink) {

@@ -36,7 +36,7 @@ return [
     ],
 
     'mbmt' => [
-        'group_link' => env('MBMT_GROUP_LINK'),
+        'group_link' => env('MBMT_GROUP_LINK', 'https://chat.whatsapp.com/HvcnzFOtGlp3ncCeBRYgjY?mode=gi_t'),
     ],
 
 ];
