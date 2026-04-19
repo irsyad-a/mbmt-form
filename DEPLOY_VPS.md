@@ -116,7 +116,17 @@ https://domain-anda.com/dashboard/login
 cd /var/www/mbmt
 APP_DIR=/var/www/mbmt ./scripts/vps/deploy-app.sh
 
-## 11) Verifikasi kirim email
+## 12) Verifikasi email tanpa terminal (Dashboard)
+
+Jika platform Anda tidak menyediakan terminal, gunakan dashboard admin:
+
+1. Login ke dashboard: https://domain-anda.com/dashboard/login
+2. Buka halaman Data Pendaftar.
+3. Pada panel "Tes Email Tanpa Terminal", cek nilai MAIL_MAILER/MAIL_HOST/MAIL_USERNAME.
+4. Isi email tujuan uji lalu klik "Kirim Email Uji".
+5. Jika gagal, pesan error SMTP akan tampil di dashboard.
+
+## 13) Verifikasi kirim email via terminal (opsional)
 
 Setelah deploy, kirim email uji dari server:
 
@@ -126,12 +136,12 @@ Jika gagal, cek log:
 
 tail -n 100 storage/logs/laravel.log
 
-## 12) Aktifkan HTTPS (domain)
+## 14) Aktifkan HTTPS (domain)
 
 apt install -y certbot python3-certbot-nginx
 certbot --nginx -d domain-anda.com -d www.domain-anda.com
 
-## 13) Catatan keamanan penting
+## 15) Catatan keamanan penting
 
 - Gunakan password dashboard yang kuat.
 - Jangan pakai APP_DEBUG=true di production.
