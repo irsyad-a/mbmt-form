@@ -9,6 +9,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route untuk melihat preview email
+Route::get('/preview-email', function () {
+    return view('emails.lembar_komitmen', [
+        'data' => [
+            'nama' => 'Budi Santoso', // Data simulasi nama
+            'pdf_link' => 'https://lmb.its.ac.id/surat-contoh.pdf' // Simulasi jika ada file PDF terlampir
+        ]
+    ]);
+});
+
 Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
 
 Route::prefix('dashboard')->name('dashboard.')->group(function (): void {

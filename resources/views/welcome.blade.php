@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Form Registrasi MBMT LMB ITS</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <meta name="description" content="Form Pendaftaran Resmi MBMT LMB ITS. Silahkan isi form dengan teliti.">
     <link rel="stylesheet" href="{{ asset('css/app-styles.css') }}?v=3.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -210,10 +211,10 @@
                 <!-- ===== STEP 3 ===== -->
                 <div id="step-3" class="form-step" style="display: none;">
                     <div class="form-group">
-                        <div class="label-badge">Pakta Integritas</div>
+                        <div class="label-badge">Lembar Komitmen</div>
                         <div class="input-wrapper pakta-wrapper" style="height: auto; min-height: 450px; padding: 20px 15px;">
                             <div class="pakta-content" style="font-size: 11px; font-family: 'Poppins', sans-serif; color: #000; text-align: left;">
-                                <p style="font-weight: 700; text-align: center; font-size: 11px;">PAKTA INTEGRITAS PESERTA MBMT 2026</p>
+                                <p style="font-weight: 700; text-align: center; font-size: 11px;">LEMBAR KOMITMEN PESERTA MBMT 2026</p>
                                 <br>
                                 <p>Yang bertanda tangan di bawah ini:</p>
                                 <br>
@@ -228,12 +229,12 @@
                                     <li style="margin-bottom: 5px;">Bersedia menerima sanksi atau konsekuensi yang telah ditetapkan oleh panitia penyelenggara apabila saya tidak hadir pada waktu dan tempat yang telah ditentukan tersebut tanpa alasan yang berdasar dan sah.</li>
                                 </ol>
                                 <br>
-                                <p>Demikian Pakta Integritas ini saya buat dengan sebenar-benarnya untuk dapat dipergunakan sebagaimana mestinya.</p>
+                                <p>Demikian Lembar Komitmen ini saya buat dengan sebenar-benarnya untuk dapat dipergunakan sebagaimana mestinya.</p>
                                 <br>
                                 <p>Surabaya, <span id="pakta-tanggal">...</span></p>
                                 <p>Yang membuat pernyataan,</p>
                                 <br>
-                                <p id="pakta-info-text"><span class="required-asterisk">*</span> Silahkan centang checker di bawah ini untuk menyetujui pakta ini!</p>
+                                <p id="pakta-info-text"><span class="required-asterisk">*</span> Silahkan centang checker di bawah ini untuk menyetujui lembar komitmen ini!</p>
                                 <br>
                                 <label class="radio-option checker-wrapper" style="display: inline-flex; align-items: center; cursor: pointer;">
                                     <input type="checkbox" id="pakta-check" class="d-none" onchange="togglePaktaText(this)">
@@ -260,9 +261,45 @@
                 </div>
 
                 <!-- SUCCESS STATE -->
-                <div id="step-selesai" class="form-step" style="display: none; height: auto; min-height: 300px; padding: 40px 20px;">
-                    <div style="font-family: 'Poppins', sans-serif; font-weight: 700; color: #243e88; font-size: 18px; text-align: left; line-height: 1.4;">
-                        <p>Terima kasih atas waktunya karena telah mengisi form reservasi ini.</p>
+                <div id="step-selesai" class="form-step" style="display: none; padding: 0 10px; margin-top: -42px; margin-bottom: -15px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; color: #243e88;">
+                        
+                        <!-- Title Terima Kasih -->
+                        <div style="margin-bottom: 18px; display: flex; flex-direction: column; align-items: center;">
+                            <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: #FFFFFF; font-weight: 400; margin: 0; line-height: 1; letter-spacing: 1.5px; -webkit-text-stroke: 1.5px #243e88; text-shadow: 2px 2px 0px rgba(36, 62, 136, 0.4);">TERIMA KASIH</h2>
+                            <div style="background-color: #f2a93b; width: 92%; height: 9px; margin-top: 5px;"></div>
+                        </div>
+
+                        <!-- Desc 1 -->
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 16px; max-width: 270px;">
+                            Form Anda sudah kami terima. Terima kasih atas partisipasi anda dalam acara ini. Acara akan diadakan pada:
+                        </p>
+
+                        <!-- SVG Informasi -->
+                        <div style="margin-bottom: 16px; width: 100%; display: flex; justify-content: center;">
+                            <img src="{{ asset('assets/informasi.svg') }}" alt="Informasi Acara" style="width: 260px; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
+                        </div>
+
+                        <!-- Desc 2 -->
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 10px; max-width: 260px;">
+                            Setelah itu Anda diperkenankan untuk masuk ke grup komunal berikut:
+                        </p>
+
+                        <!-- Tombol Gabung -->
+                        <a href="#" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 260px; height: 42px; border-radius: 45px; box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            Gabung Grup Komunal
+                        </a>
+
+                        <!-- Desc 3 -->
+                        <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11.5px; line-height: 1.35; margin-bottom: 10px; max-width: 270px;">
+                            Jika Anda memiliki pertanyaan silahkan hubungi CP di bawah ini:
+                        </p>
+
+                        <!-- Tombol CP -->
+                        <a href="https://wa.me/6281827362736253" target="_blank" style="background: linear-gradient(180deg, #ffc82a 0%, #f49e1e 100%); width: 185px; height: 26px; border-radius: 29px; box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; text-decoration: none; color: #FFFFFF; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 12px; margin-bottom: 0px; transition: transform 0.1s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            CP: 1827362736253 (Icad)
+                        </a>
+
                     </div>
                 </div>
 
@@ -294,7 +331,6 @@
             'Teknik Fisika': ['Sarjana Teknik Fisika (S1)'],
             'Teknik dan Sistem Industri': ['Sarjana Teknik Industri (S1)'],
             'Teknik Material dan Metalurgi': ['Sarjana Teknik Material (S1)'],
-            'Teknik Pangan': ['Sarjana Teknik Pangan (S1)'],
         },
         'FTSPK - Fakultas Teknik Sipil, Perencanaan, dan Kebumian': {
             'Teknik Sipil': ['Sarjana Teknik Sipil (S1)'],
@@ -313,13 +349,12 @@
             'Teknik Lepas Pantai': ['Sarjana Teknik Lepas Pantai (S1)'],
         },
         'FTEIC - Fakultas Teknologi Elektro dan Informatika Cerdas': {
-            'Teknik Elektro': ['Sarjana Teknik Elektro (S1)'],
+            'Teknik Elektro': ['Sarjana Teknik Elektro (S1)', 'Sarjana Teknik Telekomunikasi (S1)'],
             'Teknik Informatika': ['Sarjana Teknik Informatika (S1)', 'Sarjana Rekayasa Perangkat Lunak (S1)', 'Sarjana Rekayasa Kecerdasan Artifisial (S1)'],
             'Sistem Informasi': ['Sarjana Sistem Informasi (S1)', 'Sarjana Inovasi Digital (S1)'],
             'Teknik Komputer': ['Sarjana Teknik Komputer (S1)'],
             'Teknik Biomedik': ['Sarjana Teknik Biomedik (S1)'],
             'Teknologi Informasi': ['Sarjana Teknologi Informasi (S1)'],
-            'Teknik Telekomunikasi': ['Sarjana Teknik Telekomunikasi (S1)'],
         },
         'FDKBD - Fakultas Desain Kreatif dan Bisnis Digital': {
             'Manajemen Bisnis': ['Sarjana Manajemen Bisnis (S1)', 'Sarjana Bisnis Digital (S1)'],
@@ -652,9 +687,9 @@
     function togglePaktaText(checkbox) {
         const infoText = document.getElementById('pakta-info-text');
         if (checkbox.checked) {
-            infoText.innerHTML = '<span style="color:#1a7a1a; font-weight:700; font-size:11px; line-height:1.5;">✓ Anda sudah mencentang pakta integritas. Ketika Anda submit form ini, maka perubahan ini tidak dapat dilakukan. Anda harus mematuhi ketentuan acara yang telah ditetapkan oleh LMB ITS sendiri!</span>';
+            infoText.innerHTML = '<span style="color:#1a7a1a; font-weight:700; font-size:11px; line-height:1.5;">✓ Anda sudah mencentang lembar komitmen. Ketika Anda submit form ini, maka perubahan ini tidak dapat dilakukan. Anda harus mematuhi ketentuan acara yang telah ditetapkan oleh LMB ITS sendiri!</span>';
         } else {
-            infoText.innerHTML = '<span class="required-asterisk">*</span> Silahkan centang checker di bawah ini untuk menyetujui pakta ini!';
+            infoText.innerHTML = '<span class="required-asterisk">*</span> Silahkan centang checker di bawah ini untuk menyetujui lembar komitmen ini!';
         }
     }
 
@@ -802,7 +837,7 @@
 
         const paktaCheck = document.getElementById('pakta-check');
         if (!paktaCheck.checked) {
-            alert('Harap tandatangani Pakta Integritas terlebih dahulu dengan mencentang kotak tersebut.');
+            alert('Harap tandatangani Lembar Komitmen terlebih dahulu dengan mencentang kotak tersebut.');
             return;
         }
 

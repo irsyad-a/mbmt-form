@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "email-design": {
+      "source": "skillssh/skills",
+      "sourceType": "github",
+      "computedHash": "c61499f19cf0efbd15cc93ab9a3debc952a190bd0b69dfcc39e880864c5524f1"
+    },
     "figma-automation": {
       "source": "sickn33/antigravity-awesome-skills",
       "sourceType": "github",
