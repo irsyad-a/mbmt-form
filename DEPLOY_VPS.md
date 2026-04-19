@@ -54,6 +54,14 @@ APP_URL=https://domain-anda.com
 DB_PASSWORD=PASSWORD_DB_STRONG
 DASHBOARD_USERNAME=admin
 DASHBOARD_PASSWORD=PASSWORD_DASHBOARD_STRONG
+MAIL_MAILER=smtp
+MAIL_SCHEME=tls
+MAIL_HOST=smtp.example.com
+MAIL_PORT=587
+MAIL_USERNAME=SMTP_USERNAME
+MAIL_PASSWORD=SMTP_PASSWORD
+MAIL_FROM_ADDRESS=noreply@domain-anda.com
+MAIL_FROM_NAME="MBMT LMB ITS"
 
 ## 6) Jalankan deploy otomatis
 
@@ -101,6 +109,16 @@ https://domain-anda.com/dashboard/login
 
 cd /var/www/mbmt
 APP_DIR=/var/www/mbmt ./scripts/vps/deploy-app.sh
+
+## 11) Verifikasi kirim email
+
+Setelah deploy, kirim email uji dari server:
+
+php artisan tinker --execute="\Illuminate\Support\Facades\Mail::raw('Tes email MBMT berhasil.', function ($message) { $message->to('email-anda@contoh.com')->subject('Tes Email MBMT'); });"
+
+Jika gagal, cek log:
+
+tail -n 100 storage/logs/laravel.log
 
 ## 12) Aktifkan HTTPS (domain)
 
