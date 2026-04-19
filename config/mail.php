@@ -39,7 +39,16 @@ return [
 
         'smtp' => [
             'transport' => 'smtp',
-            'scheme' => env('MAIL_SCHEME'),
+            'scheme' => (static function (): ?string {
+                $scheme = strtolower(trim((string) env('MAIL_SCHEME')));
+
+                return match ($scheme) {
+                    'tls' => 'smtp',
+                    'ssl' => 'smtps',
+                    '' => null,
+                    default => $scheme,
+                };
+            })(),
             'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', '127.0.0.1'),
             'port' => env('MAIL_PORT', 2525),
