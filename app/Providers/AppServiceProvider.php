@@ -20,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (app()->environment('production')) {
+        $forceHttps = filter_var((string) env('FORCE_HTTPS', 'true'), FILTER_VALIDATE_BOOL);
+
+        if (app()->environment('production') && $forceHttps) {
             URL::forceScheme('https');
         }
     }
