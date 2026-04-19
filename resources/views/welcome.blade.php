@@ -960,10 +960,16 @@
                 return;
             }
 
-            updateSuccessContactPerson(responsePayload);
             document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
             document.getElementById('step-selesai').style.display = 'block';
             document.getElementById('step-badge-text').innerText = 'SELESAI';
+
+            // Keep success transition resilient even if dynamic CP rendering fails.
+            try {
+                updateSuccessContactPerson(responsePayload);
+            } catch (renderError) {
+                console.error('Failed to render CP data on success view:', renderError);
+            }
             const formTitle = document.querySelector('.form-title');
             if (formTitle) formTitle.style.display = 'none';
             try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
