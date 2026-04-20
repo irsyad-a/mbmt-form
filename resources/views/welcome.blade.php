@@ -6,8 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Form Registrasi MBMT LMB ITS</title>
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <meta name="description" content="Form Pendaftaran Resmi MBMT LMB ITS. Silahkan isi form dengan teliti.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MBMT LMB ITS">
+    <meta property="og:title" content="Media Training LMB ITS 2026">
+    <meta property="og:description" content="Form Pendaftaran Resmi MBMT LMB ITS. Silahkan isi form dengan teliti.">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('assets/OG.png') }}">
+    <meta property="og:image:secure_url" content="{{ asset('assets/OG.png') }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Media Training LMB ITS 2026">
+    <meta name="twitter:description" content="Form Pendaftaran Resmi MBMT LMB ITS. Silahkan isi form dengan teliti.">
+    <meta name="twitter:image" content="{{ asset('assets/OG.png') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/pavicon.svg') }}">
     <link rel="stylesheet" href="{{ asset('css/app-styles.css') }}?v=3.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
