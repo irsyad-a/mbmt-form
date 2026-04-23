@@ -258,8 +258,11 @@
     <header class="topbar">
         <h1>Dashboard Registrasi MBMT</h1>
         @if ($isDashboardLoggedIn)
-            <div style="display:flex; gap:10px; align-items:center;">
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
                 <a href="{{ route('dashboard.registrations.index') }}">Data Pendaftar</a>
+                <a href="{{ route('dashboard.summary.ukm_transparency') }}">Transparansi UKM</a>
+                <a href="{{ route('dashboard.summary.faculty_map') }}">Pemetaan</a>
+                <a href="{{ route('dashboard.form_settings.index') }}">Buka/Tutup Form</a>
                 <form method="POST" action="{{ route('dashboard.logout') }}" class="inline">
                     @csrf
                     <button type="submit" class="btn btn-secondary">Logout</button>

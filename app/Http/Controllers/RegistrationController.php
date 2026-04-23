@@ -6,6 +6,7 @@ use App\Mail\CommitmentDocumentMail;
 use App\Mail\RegistrationSuccessMail;
 use App\Models\Registration;
 use App\Support\ContactPersonResolver;
+use App\Support\FormSettingsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -19,6 +20,15 @@ class RegistrationController extends Controller
 {
     public function store(Request $request): JsonResponse
     {
+        // Check if form is currently accepting submissions
+        /** @var FormSettingsService $formSettings */
+        $formSettings = app(FormSettingsService::class);
+        if (! $formSettings->isFormOpen()) {
+            return response()->json([
+                'message' => 'Pendaftaran sudah ditutup. Formulir ini tidak lagi menerima submission baru.',
+            ], 403);
+        }
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:registrations,email'],

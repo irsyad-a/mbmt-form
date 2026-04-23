@@ -53,7 +53,46 @@
             </div>
             <h1 class="form-title">Silahkan isi form di bawah ini dengan teliti!</h1>
 
-            <form id="registrationForm" onsubmit="handleSubmit(event)" novalidate>
+            @if (!$formIsOpen)
+            {{-- FORM CLOSED BANNER --}}
+            <div id="form-closed-banner" style="
+                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                border: 2px solid #e74c3c;
+                border-radius: 16px;
+                padding: 32px 24px;
+                text-align: center;
+                margin: 10px 0 20px;
+                color: #fff;
+                font-family: 'Poppins', sans-serif;
+            ">
+                <div style="font-size: 48px; margin-bottom: 12px;">🔒</div>
+                <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #e74c3c; margin: 0 0 10px; letter-spacing: 1px;">PENDAFTARAN DITUTUP</h2>
+                <p style="font-size: 13px; color: #bdc3c7; margin: 0; line-height: 1.6;">
+                    Form pendaftaran MBMT LMB ITS 2026 saat ini sedang tidak aktif.
+                    <br>Silakan hubungi panitia untuk informasi lebih lanjut.
+                </p>
+                @php
+                    $deadline = $formSettings['form_deadline']
+                        ? \Illuminate\Support\Carbon::parse($formSettings['form_deadline'])
+                            ->locale('id')->translatedFormat('l, d F Y H:i') . ' WIB'
+                        : null;
+                @endphp
+                @if ($deadline)
+                <p style="font-size: 12px; color: #e74c3c; margin: 12px 0 0; font-weight: 600;">
+                    Pendaftaran ditutup sejak: {{ $deadline }}
+                </p>
+                @endif
+                <a href="https://wa.me/6282179119634" target="_blank" rel="noopener noreferrer"
+                   style="display:inline-block; margin-top:18px; padding: 10px 24px;
+                          background: #25D366; color: #fff; border-radius: 30px;
+                          text-decoration:none; font-weight:700; font-size:13px;">
+                    📱 Hubungi Panitia
+                </a>
+            </div>
+            @endif
+
+            <form id="registrationForm" onsubmit="handleSubmit(event)" novalidate
+                  {{ !$formIsOpen ? 'style="pointer-events:none; opacity:0.45;"' : '' }}>
 
                 <!-- ===== STEP 1 ===== -->
                 <div id="step-1" class="form-step">
