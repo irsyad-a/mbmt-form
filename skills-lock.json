@@ -1,6 +1,11 @@
 {
   "version": 1,
   "skills": {
+    "better-icons": {
+      "source": "better-auth/better-icons",
+      "sourceType": "github",
+      "computedHash": "b16a2f5830f3db40695fdd58d415a631e9fb6170a0cc5d3b56469d17e53596bc"
+    },
     "email-design": {
       "source": "skillssh/skills",
       "sourceType": "github",
@@ -25,6 +30,11 @@
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "computedHash": "9e1c8b3103f92fa8092568a44fe64858de7c5c9dc65ce4bea8f168080e889cfd"
+    },
+    "humanizer": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "c948e831d5fdfbe2e1fbbba1ebf8ab410a8f077ba529ddd522fd9ae40e6cc653"
     },
     "react": {
       "source": "vercel-labs/json-render",

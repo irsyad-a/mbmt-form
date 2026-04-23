@@ -59,8 +59,10 @@ class FormSettingsService
 
         if ($settings['form_deadline'] !== null) {
             try {
-                $deadline = Carbon::parse($settings['form_deadline']);
-                if (Carbon::now()->greaterThan($deadline)) {
+                $tz       = new \DateTimeZone('Asia/Jakarta');
+                $deadline = Carbon::parse($settings['form_deadline'], $tz);
+                $now      = Carbon::now($tz);
+                if ($now->greaterThanOrEqualTo($deadline)) {
                     return false;
                 }
             } catch (\Throwable) {

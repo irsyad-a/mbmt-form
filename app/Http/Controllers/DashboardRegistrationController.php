@@ -203,8 +203,29 @@ class DashboardRegistrationController extends Controller
 
     public function summaryFacultyMap(): View
     {
+        // Group registrants by faculty → department → major with counts
+        $all = Registration::query()
+            ->selectRaw('faculty, department, major, COUNT(*) as total')
+            ->groupBy('faculty', 'department', 'major')
+            ->orderBy('faculty')
+            ->orderBy('department')
+            ->orderBy('major')
+            ->get();
+
+        // Build nested structure: faculty → dept → [major => count]
+        $mapped = [];
+        foreach ($all as $row) {
+            $f = $row->faculty;
+            $d = $row->department;
+            $m = $row->major;
+            $mapped[$f][$d][$m] = (int) $row->total;
+        }
+
+        $totalRegistrants = $all->sum('total');
+
         return view('dashboard.summary.faculty_map', [
-            'itsData' => self::ITS_DATA,
+            'mapped'           => $mapped,
+            'totalRegistrants' => $totalRegistrants,
         ]);
     }
 
