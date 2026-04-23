@@ -46,7 +46,7 @@
         <div style="background: #fff8f0; border: 1px solid #fcd09e; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px;">
             <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
                 <div>
-                    <strong style="font-size:14px;">📣 Copy Template Pesan WhatsApp</strong>
+                    <strong style="font-size:14px; display:flex; align-items:center; gap:6px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="currentColor" d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path fill="currentColor" d="M6 14a12 12 0 0 0 2.4 7.2a2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14M8 6v8"/></g></svg> Copy Template Pesan WhatsApp</strong>
                     <div class="muted" style="margin-top:3px;">Pesan siap-kirim untuk grup WhatsApp UKM yang belum aman.</div>
                 </div>
                 <button id="btn-copy-wa" class="btn btn-primary" onclick="copyWaTemplate()" style="background: #25D366; display:flex; align-items:center; gap:6px;">
@@ -85,11 +85,11 @@
                         <td style="text-align:center;">
                             @if ($row['status'] === 'aman')
                                 <span style="display:inline-block; padding:3px 10px; border-radius:20px; background:#e8f7ed; color:#17663a; font-size:12px; font-weight:700;">
-                                    ✅ Aman
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" style="display:inline;vertical-align:middle;"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="currentColor" d="M21.801 10A10 10 0 1 1 17 3.335"/><path fill="currentColor" d="m9 11l3 3L22 4"/></g></svg> Aman
                                 </span>
                             @else
                                 <span style="display:inline-block; padding:3px 10px; border-radius:20px; background:#fde8e8; color:#c62828; font-size:12px; font-weight:700;">
-                                    ⚠️ Belum Aman
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" style="display:inline;vertical-align:middle;"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21.73 18l-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3M12 9v4m0 4h.01"/></svg> Belum Aman
                                 </span>
                             @endif
                         </td>
@@ -133,7 +133,7 @@
             navigator.clipboard.writeText(text).then(() => {
                 const btn = document.getElementById('btn-copy-wa');
                 const orig = btn.innerHTML;
-                btn.innerHTML = '✅ Tersalin!';
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="display:inline;vertical-align:middle;"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11l3 3L22 4"/></g></svg> Tersalin!';
                 btn.style.background = '#17663a';
                 setTimeout(() => {
                     btn.innerHTML = orig;

@@ -46,53 +46,122 @@
         </div>
 
         <section class="form-container">
+            @if ($formIsOpen)
             <div class="paging-badge-wrapper">
                 <div class="paging-badge">
                     <p id="step-badge-text">BAGIAN 1 DARI 3</p>
                 </div>
             </div>
-            <h1 class="form-title">Silahkan isi form di bawah ini dengan teliti!</h1>
+            @endif
+            @if ($formIsOpen)<h1 class="form-title">Silahkan isi form di bawah ini dengan teliti!</h1>@endif
+
 
             @if (!$formIsOpen)
-            {{-- FORM CLOSED BANNER --}}
-            <div id="form-closed-banner" style="
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-                border: 2px solid #e74c3c;
-                border-radius: 16px;
-                padding: 32px 24px;
+            {{-- FORM CLOSED — Figma design implementation --}}
+            @php
+                $deadlineStr = $formSettings['form_deadline']
+                    ? \Illuminate\Support\Carbon::parse($formSettings['form_deadline'], new \DateTimeZone('Asia/Jakarta'))
+                        ->locale('id')->translatedFormat('l, d F Y H:i') . ' WIB'
+                    : null;
+            @endphp
+            <div id="form-closed-screen" style="
+                position: relative;
+                width: 100%;
+                min-height: 380px;
+                border-radius: 20px;
+                overflow: hidden;
+                margin: 10px 0 0;
+                background: linear-gradient(168.8deg, #039dfc 6.97%, #5190fc 28.3%, #3b67c2 54.12%, #243e88 94.02%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 40px 24px 32px;
                 text-align: center;
-                margin: 10px 0 20px;
-                color: #fff;
-                font-family: 'Poppins', sans-serif;
+                gap: 0;
             ">
-                <div style="font-size: 48px; margin-bottom: 12px;">🔒</div>
-                <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: #e74c3c; margin: 0 0 10px; letter-spacing: 1px;">PENDAFTARAN DITUTUP</h2>
-                <p style="font-size: 13px; color: #bdc3c7; margin: 0; line-height: 1.6;">
-                    Form pendaftaran MBMT LMB ITS 2026 saat ini sedang tidak aktif.
-                    <br>Silakan hubungi panitia untuk informasi lebih lanjut.
-                </p>
-                @php
-                    $deadline = $formSettings['form_deadline']
-                        ? \Illuminate\Support\Carbon::parse($formSettings['form_deadline'])
-                            ->locale('id')->translatedFormat('l, d F Y H:i') . ' WIB'
-                        : null;
-                @endphp
-                @if ($deadline)
-                <p style="font-size: 12px; color: #e74c3c; margin: 12px 0 0; font-weight: 600;">
-                    Pendaftaran ditutup sejak: {{ $deadline }}
-                </p>
-                @endif
-                <a href="https://wa.me/6282179119634" target="_blank" rel="noopener noreferrer"
-                   style="display:inline-block; margin-top:18px; padding: 10px 24px;
-                          background: #25D366; color: #fff; border-radius: 30px;
-                          text-decoration:none; font-weight:700; font-size:13px;">
-                    📱 Hubungi Panitia
+                {{-- Decorative arrows (left & right) --}}
+                <div style="position:absolute; top:0; left:0; bottom:0; width:40px; pointer-events:none; display:flex; align-items:center;">
+                    <svg viewBox="0 0 40 80" width="36" height="80" style="opacity:0.55;"><polygon points="0,40 36,4 36,76" fill="#ffc300"/></svg>
+                </div>
+                <div style="position:absolute; top:0; right:0; bottom:0; width:40px; pointer-events:none; display:flex; align-items:center;">
+                    <svg viewBox="0 0 40 80" width="36" height="80" style="opacity:0.55;"><polygon points="40,40 4,4 4,76" fill="#ffc300"/></svg>
+                </div>
+
+                {{-- Badge FORM DITUTUP --}}
+                <div style="
+                    background: linear-gradient(168deg, #eec340 6.8%, #fffa8a 23.9%, #deac17 39.4%, #ffff95 52.1%);
+                    padding: 4px 20px;
+                    border-radius: 4px;
+                    box-shadow: 0 2px 6px rgba(36,62,136,0.4);
+                    margin-bottom: 18px;
+                ">
+                    <span style="
+                        font-family: 'Bebas Neue', sans-serif;
+                        font-size: 17px;
+                        color: #243e88;
+                        letter-spacing: 0.5px;
+                        text-transform: uppercase;
+                    ">FORM DITUTUP</span>
+                </div>
+
+                {{-- Warning envelope icon --}}
+                <div style="margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+                        <polygon points="10,20 40,48 70,20 70,62 10,62" fill="#243e88" opacity="0.9"/>
+                        <polygon points="10,18 40,46 70,18" fill="#4a6ed6"/>
+                        <polygon points="10,18 10,62 70,62 70,18 40,46" fill="none" stroke="#5190fc" stroke-width="2"/>
+                        <circle cx="40" cy="56" r="16" fill="#ffc300"/>
+                        <text x="40" y="62" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="900" fill="#243e88">!</text>
+                    </svg>
+                </div>
+
+                {{-- Message box --}}
+                <div style="
+                    background: linear-gradient(167.76deg, #518dfc 0%, #243e88 52.38%, #518dfc 100%);
+                    box-shadow: 0 2.7px 2.7px rgba(0,0,0,0.25);
+                    border-radius: 8px;
+                    padding: 14px 18px;
+                    width: 100%;
+                    max-width: 295px;
+                ">
+                    <p style="
+                        font-family: 'Bebas Neue', sans-serif;
+                        font-size: 20px;
+                        color: #fff;
+                        line-height: 1.4;
+                        margin: 0;
+                        text-transform: uppercase;
+                        text-align: center;
+                    ">
+                        Form Telah Ditutup
+                        @if ($deadlineStr)
+                            pada {{ $deadlineStr }}.
+                        @endif
+                        Silahkan hubungi Panitia bila ada kesalahan terkait hal ini!
+                    </p>
+                </div>
+
+                {{-- Contact button --}}
+                <a href="https://wa.me/6282179119634" target="_blank" rel="noopener noreferrer" style="
+                    margin-top: 20px;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 10px 24px;
+                    background: #25D366;
+                    color: #fff;
+                    border-radius: 30px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    font-size: 13px;
+                ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="white" d="M22 16.92v3a2 2 0 0 1-2.18 2a19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72a12.84 12.84 0 0 0 .7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45a12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></g></svg>
+                    Hubungi Panitia
                 </a>
             </div>
-            @endif
-
-            <form id="registrationForm" onsubmit="handleSubmit(event)" novalidate
-                  {{ !$formIsOpen ? 'style="pointer-events:none; opacity:0.45;"' : '' }}>
+            @else
+            <form id="registrationForm" onsubmit="handleSubmit(event)" novalidate>
 
                 <!-- ===== STEP 1 ===== -->
                 <div id="step-1" class="form-step">
@@ -365,6 +434,7 @@
                 </div>
 
             </form>
+            @endif
         </section>
 
         <footer class="app-footer">

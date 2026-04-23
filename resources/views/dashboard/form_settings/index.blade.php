@@ -12,7 +12,10 @@
     <div style="margin-bottom: 20px; display:flex; align-items:center; gap:10px;">
         <a href="{{ route('dashboard.registrations.index') }}" class="btn btn-secondary" style="padding:8px 12px; font-size:13px;">← Kembali</a>
         <div>
-            <h2 style="margin:0 0 2px;">⚙️ Pengaturan Buka / Tutup Form</h2>
+            <h2 style="margin:0 0 2px; display:flex; align-items:center; gap:8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="15" cy="12" r="3"/><rect width="20" height="14" x="2" y="5" rx="7"/></g></svg>
+                Pengaturan Buka / Tutup Form
+            </h2>
             <div class="muted">Atur apakah form pendaftaran publik sedang menerima pendaftaran atau tidak.</div>
         </div>
     </div>
@@ -20,7 +23,13 @@
     {{-- STATUS INDICATOR --}}
     <div style="margin-bottom: 20px; padding: 16px 20px; border-radius: 12px; display:flex; align-items:center; gap:14px;
         {{ $isOpen ? 'background:#e8f7ed; border:1px solid #b5dfc5;' : 'background:#fde8e8; border:1px solid #f1bcbc;' }}">
-        <div style="font-size:36px; line-height:1;">{{ $isOpen ? '🟢' : '🔴' }}</div>
+        <div style="width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; {{ $isOpen ? 'background:#e8f7ed; color:#17663a;' : 'background:#fde8e8; color:#c62828;' }}">
+            @if ($isOpen)
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path fill="currentColor" d="M21.801 10A10 10 0 1 1 17 3.335"/><path fill="currentColor" d="m9 11l3 3L22 4"/></g></svg>
+            @else
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.36 6.64A9 9 0 0 1 20.77 14M6.16 6.16a9 9 0 0 0 12.68 12.68M12 2a9 9 0 0 1 9 9M2.06 12.06A9 9 0 0 0 12 21M3.93 3.93L20.07 20.07"/></svg>
+            @endif
+        </div>
         <div>
             <div style="font-weight:700; font-size:18px; color:{{ $isOpen ? '#17663a' : '#c62828' }};">
                 Form saat ini: {{ $isOpen ? 'TERBUKA' : 'DITUTUP' }}
@@ -115,8 +124,9 @@
             @endif
         </div>
 
-        <button type="submit" class="btn btn-primary" style="padding: 12px 24px; font-size:15px;">
-            💾 Simpan Pengaturan
+        <button type="submit" class="btn btn-primary" style="padding: 12px 24px; font-size:15px; display:flex; align-items:center; gap:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-1.2 9a3 3 0 1 0 0 6a3 3 0 0 0 0-6M5 3v4a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V3"/></svg>
+            Simpan Pengaturan
         </button>
     </form>
 
