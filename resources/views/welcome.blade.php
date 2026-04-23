@@ -80,14 +80,6 @@
                 text-align: center;
                 gap: 0;
             ">
-                {{-- Decorative arrows (left & right) --}}
-                <div style="position:absolute; top:0; left:0; bottom:0; width:40px; pointer-events:none; display:flex; align-items:center;">
-                    <svg viewBox="0 0 40 80" width="36" height="80" style="opacity:0.55;"><polygon points="0,40 36,4 36,76" fill="#ffc300"/></svg>
-                </div>
-                <div style="position:absolute; top:0; right:0; bottom:0; width:40px; pointer-events:none; display:flex; align-items:center;">
-                    <svg viewBox="0 0 40 80" width="36" height="80" style="opacity:0.55;"><polygon points="40,40 4,4 4,76" fill="#ffc300"/></svg>
-                </div>
-
                 {{-- Badge FORM DITUTUP --}}
                 <div style="
                     background: linear-gradient(168deg, #eec340 6.8%, #fffa8a 23.9%, #deac17 39.4%, #ffff95 52.1%);
@@ -107,13 +99,7 @@
 
                 {{-- Warning envelope icon --}}
                 <div style="margin-bottom: 20px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
-                        <polygon points="10,20 40,48 70,20 70,62 10,62" fill="#243e88" opacity="0.9"/>
-                        <polygon points="10,18 40,46 70,18" fill="#4a6ed6"/>
-                        <polygon points="10,18 10,62 70,62 70,18 40,46" fill="none" stroke="#5190fc" stroke-width="2"/>
-                        <circle cx="40" cy="56" r="16" fill="#ffc300"/>
-                        <text x="40" y="62" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="900" fill="#243e88">!</text>
-                    </svg>
+                    <img src="{{ asset('assets/icon-surat.svg') }}" alt="Form Closed" style="width: 140px; height: auto;">
                 </div>
 
                 {{-- Message box --}}
