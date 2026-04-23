@@ -29,6 +29,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function (): void {
         Route::get('/', [DashboardRegistrationController::class, 'index'])->name('registrations.index');
         Route::get('/registrations/create', [DashboardRegistrationController::class, 'create'])->name('registrations.create');
         Route::post('/registrations', [DashboardRegistrationController::class, 'store'])->name('registrations.store');
+        Route::post('/mail/test', [DashboardRegistrationController::class, 'sendTestMail'])->name('mail.test');
         Route::get('/registrations/export/excel', [DashboardRegistrationController::class, 'exportExcel'])->name('registrations.export.excel');
         Route::get('/registrations/export/pdf', [DashboardRegistrationController::class, 'exportPdf'])->name('registrations.export.pdf');
         Route::get('/registrations/{registration}/edit', [DashboardRegistrationController::class, 'edit'])->name('registrations.edit');

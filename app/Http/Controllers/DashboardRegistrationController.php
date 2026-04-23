@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\RegistrationsExport;
+use App\Mail\DashboardMailTestMessage;
 use App\Models\Registration;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,10 +12,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Throwable;
 
 class DashboardRegistrationController extends Controller
 {
@@ -176,6 +179,32 @@ class DashboardRegistrationController extends Controller
         return redirect()
             ->route('dashboard.registrations.index')
             ->with('status', 'Data pendaftar berhasil dihapus.');
+    }
+
+    public function sendTestMail(Request $request): RedirectResponse
+    {
+        $payload = $request->validate([
+            'test_email' => ['required', 'email', 'max:255'],
+        ]);
+
+        $recipientEmail = (string) $payload['test_email'];
+
+        try {
+            Mail::to($recipientEmail)->send(new DashboardMailTestMessage(now()->toDateTimeString()));
+
+            return redirect()
+                ->route('dashboard.registrations.index')
+                ->with('status', 'Email uji berhasil dikirim ke '.$recipientEmail.'.');
+        } catch (Throwable $exception) {
+            Log::error('Dashboard mail test failed.', [
+                'to' => $recipientEmail,
+                'error' => $exception->getMessage(),
+            ]);
+
+            return redirect()
+                ->route('dashboard.registrations.index')
+                ->with('error', 'Email uji gagal: '.$exception->getMessage());
+        }
     }
 
     public function exportExcel(): BinaryFileResponse

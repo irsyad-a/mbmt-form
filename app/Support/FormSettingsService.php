@@ -19,6 +19,10 @@ class FormSettingsService
      */
     public function get(): array
     {
+        if (app()->runningUnitTests()) {
+            return $this->defaults();
+        }
+
         if (! File::exists($this->path)) {
             return $this->defaults();
         }
