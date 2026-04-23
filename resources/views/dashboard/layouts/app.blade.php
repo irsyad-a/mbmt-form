@@ -225,6 +225,72 @@
             margin-top: 14px;
         }
 
+        .pagination nav > div:first-child {
+            display: none;
+        }
+
+        .pagination nav > div:last-child {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pagination nav p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .pagination nav .inline-flex {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .pagination nav a,
+        .pagination nav span[aria-current="page"] > span,
+        .pagination nav span[aria-disabled="true"] > span {
+            min-width: 34px;
+            height: 34px;
+            padding: 0 10px;
+            border: 1px solid #c9d6ff;
+            background: #fff;
+            color: #223266;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination nav a:hover {
+            background: #eef2ff;
+            border-color: #afc1f5;
+        }
+
+        .pagination nav span[aria-current="page"] > span {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .pagination nav span[aria-disabled="true"] > span {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .pagination nav svg {
+            width: 12px;
+            height: 12px;
+            display: block;
+        }
+
         .checkbox-row {
             display: flex;
             align-items: center;
