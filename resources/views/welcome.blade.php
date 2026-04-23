@@ -71,7 +71,7 @@
                 border-radius: 20px;
                 overflow: hidden;
                 margin: 10px 0 0;
-                background: linear-gradient(168.8deg, #039dfc 6.97%, #5190fc 28.3%, #3b67c2 54.12%, #243e88 94.02%);
+                background: rgba(255, 255, 255, 0.6);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -117,14 +117,9 @@
                         color: #fff;
                         line-height: 1.4;
                         margin: 0;
-                        text-transform: uppercase;
                         text-align: center;
                     ">
-                        Form Telah Ditutup
-                        @if ($deadlineStr)
-                            pada {{ $deadlineStr }}.
-                        @endif
-                        Silahkan hubungi Panitia bila ada kesalahan terkait hal ini!
+                        FORM TELAH DITUTUP @if ($deadlineStr) PADA {{ strtoupper($deadlineStr) }}. @endif SILAHKAN HUBUNGI PANITIA BILA ADA KESALAHAN TERKAIT HAL INI!
                     </p>
                 </div>
 
